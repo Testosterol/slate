@@ -226,18 +226,68 @@
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#sign-up" class="toc-h2 toc-link" data-title="SIGN UP">SIGN UP</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#sign-in" class="toc-h2 toc-link" data-title="SIGN IN">SIGN IN</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#sign-out" class="toc-h2 toc-link" data-title="SIGN OUT">SIGN OUT</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#users" class="toc-h1 toc-link" data-title="Users">Users</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-user" class="toc-h2 toc-link" data-title="Get User">Get User</a>
+                  </li>
+                  <li>
+                    <a href="#patch-user" class="toc-h2 toc-link" data-title="Patch User">Patch User</a>
+                  </li>
+                  <li>
+                    <a href="#updating-users-password" class="toc-h2 toc-link" data-title="Updating users password">Updating users password</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#test-sessions" class="toc-h1 toc-link" data-title="Test Sessions">Test Sessions</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-multiple-test-sessions" class="toc-h2 toc-link" data-title="Get multiple test sessions">Get multiple test sessions</a>
+                  </li>
+                  <li>
+                    <a href="#get-one-test-session" class="toc-h2 toc-link" data-title="Get one test session">Get one test session</a>
+                  </li>
+                  <li>
+                    <a href="#post-test-sessions" class="toc-h2 toc-link" data-title="Post test sessions">Post test sessions</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#training-sessions" class="toc-h1 toc-link" data-title="Training sessions">Training sessions</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-training-sessions" class="toc-h2 toc-link" data-title="Get Training sessions">Get Training sessions</a>
+                  </li>
+                  <li>
+                    <a href="#get-one-training-session" class="toc-h2 toc-link" data-title="Get one Training session">Get one Training session</a>
+                  </li>
+                  <li>
+                    <a href="#post-training-session" class="toc-h2 toc-link" data-title="Post training session">Post training session</a>
+                  </li>
+                  <li>
+                    <a href="#patch-training-session" class="toc-h2 toc-link" data-title="Patch training session">Patch training session</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#performances" class="toc-h1 toc-link" data-title="Performances">Performances</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-performances" class="toc-h2 toc-link" data-title="Get Performances">Get Performances</a>
                   </li>
               </ul>
           </li>
@@ -254,240 +304,791 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the Aerofit API! This API gives access to all Aerofit related endpoints.</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>On the right side you’ll see code examples. We currently have JSON code samples, showing the formatting of requests and responses.</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+<p>This is updated as the API is being expanded.</p>
+
+<p>Right now the API is only available internally at Aerofit so don’t share anything from within this documentation with anyone outside Aerofit.</p>
+
+<p>Api is primarly coded in ruby on rails. The next development stages will be continuously translated into node.js</p>
+
+<p>Authors of Api are Denis Trebula and Rasmus Reiler.</p>
 <h1 id='authentication'>Authentication</h1>
+<p>The Aerofit API uses authentication for almost all endpoints. The authentication system is in charge of keeping a user logged in, and therefore also for scoping API requests to the users resources.</p>
+
+<p>The authentication system works by using headers. On authenticated endpoints the API requires five headers to be sent with the requests. When the request is processed by the API a timer of five seconds will be set, after which the headers will be invalidated (in development the headers won’t be invalidated)</p>
+
+<p>The API will include new headers on all authenticated responses. The client should use the new headers as the old ones will be invalidated. If the request and response is sent over HTTTPS, this should protect against MITM attacks.</p>
+
+<p>The headers are as follows:</p>
+
+<p>access-token</p>
+
+<p>client</p>
+
+<p>expiry</p>
+
+<p>token-type</p>
+
+<p>uid</p>
+
+<p>Almost all endpoints can therefore return error code 403 Unauthorized.</p>
+
+<p>We’re using the Ruby gem Devise Token Auth as our authentication system. If more information is needed take a look at the linked Github repository.</p>
+<h2 id='sign-up'>SIGN UP</h2>
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>To Create a new user, you can use following code:</p>
 </blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@test.dk"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test12345678"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"password_confirmation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test12345678"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
 </span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
+<blockquote>
+<p>The API will respond with 200:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@test.dk"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"activity_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@test.dk"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-16T08:03:39.384Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-16T08:03:39.620Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_test"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint is used to create a new User in the database. This is preferably the first endpoint a user should hit when using the application. The endpoint is currently handled fully by Devise, meaning the application will have to PATCH the user in a later request with more information.</p>
+
+<p>Creating a user with this endpoint successfully also returns the users headers, meaning there’s no need to sign in afterwards.</p>
+
+<p>Assigning user role of a admin will give him more privilages and access to different endpoints for more information.</p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Default</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
+<td>name</td>
 <td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>Users name</td>
+</tr>
+<tr>
+<td>email</td>
+<td>true</td>
+<td>Users email</td>
+</tr>
+<tr>
+<td>password</td>
+<td>true</td>
+<td>Users password. Minimum 6 characters long, must contains lower case and upper case letter and a number.</td>
+</tr>
+<tr>
+<td>password_confirmation</td>
+<td>true</td>
+<td>A repetition of the users password</td>
+</tr>
+<tr>
+<td>admin</td>
+<td>false</td>
+<td>To make user into super user/admin</td>
 </tr>
 </tbody></table>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST http://207.154.254.66/auth</code></p>
+<h3 id='errors'>Errors</h3>
+<p>If the API call is unsuccesful the following errors can occur</p>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
+<p><code>422: Unprocessable entity</code></p>
+<h2 id='sign-in'>SIGN IN</h2>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Your request should look like following:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@test.dk"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test12345678"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
+<blockquote>
+<p>The api will respond with 200:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@test.dk"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"activity_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@test.dk"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_test"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>If a user already exists in the database you must use the sign-in endpoint to retrieve the authentication headers.</p>
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<p>Do not forget that the user must use a password which contains:
+           Must contain 6 or more characters.
+           Must contain a digit.
+           Must contain a lower case character.
+           Must contain an upper case character.</p>
+
+<p>This is important in order to achieve at least basic security measures.</p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>true</td>
+<td>Users email</td>
+</tr>
+<tr>
+<td>password</td>
+<td>true</td>
+<td>Users password</td>
+</tr>
+</tbody></table>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p><code>POST http://207.154.254.66/auth/sign_in</code></p>
+<h3 id='errors-2'>Errors</h3>
+<p>If the API call is unsuccesful the following errors can occur</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p><code>401: Unauthorized</code></p>
+<h2 id='sign-out'>SIGN OUT</h2>
+<p>This endpoint is used to logout a user. The user is found through the request headers.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>DELETE http://207.154.254.66/auth/sign_out</code></p>
+<h3 id='errors-3'>Errors</h3>
+<p>If the API call is unsuccesful the following errors can occur</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<p><code>404: Not found</code></p>
+<h1 id='users'>Users</h1>
+<p>The User object is the central object in the API. Every user has one. It links every other object together and is used for authorization of resources. It contains information that pertains to that one specific user.</p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+<p>User is linked with Test_sessions, Training_sessions, Performances, Devices.</p>
+<h2 id='get-user'>Get User</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@test.dk"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test_doc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"activity_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_test"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"test_sessions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-14T12:24:12.694Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"peak_exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"peak_insp"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"avg_exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"avg_insp"</span><span class="p">:</span><span class="w"> </span><span class="mi">-12</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"training_sessions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"performance"</span><span class="p">:{</span><span class="s2">"id"</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span><span class="s2">"avg_weekly"</span><span class="p">:{</span><span class="s2">"start_date"</span><span class="p">:</span><span class="s2">"2018-01-10T17:42:17.127Z"</span><span class="p">,</span><span class="s2">"1"</span><span class="p">:{</span><span class="s2">"avg_evaluation"</span><span class="p">:</span><span class="mf">5.4</span><span class="p">,</span><span class="s2">"num_entries"</span><span class="p">:</span><span class="mi">5</span><span class="p">}},</span><span class="w">
+    </span><span class="s2">"avg_monthly"</span><span class="p">:{</span><span class="s2">"start_date"</span><span class="p">:</span><span class="s2">"2018-01-10T17:42:17.127Z"</span><span class="p">,</span><span class="s2">"0"</span><span class="p">:{</span><span class="s2">"avg_evaluation"</span><span class="p">:</span><span class="mf">5.4</span><span class="p">,</span><span class="s2">"num_entries"</span><span class="p">:</span><span class="mi">5</span><span class="p">}},</span><span class="w">
+    </span><span class="s2">"avg_yearly"</span><span class="p">:{</span><span class="s2">"start_date"</span><span class="p">:</span><span class="s2">"2018-01-10T17:42:17.12"</span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"device"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<p>This endpoint responds with a user. It also embeds latest TrainingSession, TestSession, Device and Performances object.
+The TrainingSession only contains the ID and date so you can show the upcoming training to the use in the application.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET http://207.154.254.66/users/:id</code></p>
+
+<p><code>GET http://207.154.254.66/users/:email</code></p>
+
+<p>if you want to retreive users by email, email must be in following format: Instead of test@test.dk   use  test-test-dk</p>
+
+<p>This is due to friendly id library.</p>
+<h3 id='errors-4'>Errors</h3>
+<p>If the API call is unsuccesful the following errors can occur</p>
+
+<p><code>404: Not found</code></p>
+<h3 id='super-user'>Super user</h3>
+<p>Super user has in this case access to every user in database just by using mentioned http requests.</p>
+<h2 id='patch-user'>Patch User</h2>
+<blockquote>
+<p>Request should look like following:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"patch_test"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Api will respond with</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@test.dk"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"patch_test"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"activity_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_test"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"test_sessions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-14T12:24:12.694Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"peak_exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"peak_insp"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"avg_exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"avg_insp"</span><span class="p">:</span><span class="w"> </span><span class="mi">-12</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"training_sessions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"performance"</span><span class="p">:{</span><span class="s2">"id"</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span><span class="s2">"avg_weekly"</span><span class="p">:{</span><span class="s2">"start_date"</span><span class="p">:</span><span class="s2">"2018-01-10T17:42:17.127Z"</span><span class="p">,</span><span class="s2">"1"</span><span class="p">:{</span><span class="s2">"avg_evaluation"</span><span class="p">:</span><span class="mf">5.4</span><span class="p">,</span><span class="s2">"num_entries"</span><span class="p">:</span><span class="mi">5</span><span class="p">}},</span><span class="w">
+    </span><span class="s2">"avg_monthly"</span><span class="p">:{</span><span class="s2">"start_date"</span><span class="p">:</span><span class="s2">"2018-01-10T17:42:17.127Z"</span><span class="p">,</span><span class="s2">"0"</span><span class="p">:{</span><span class="s2">"avg_evaluation"</span><span class="p">:</span><span class="mf">5.4</span><span class="p">,</span><span class="s2">"num_entries"</span><span class="p">:</span><span class="mi">5</span><span class="p">}},</span><span class="w">
+    </span><span class="s2">"avg_yearly"</span><span class="p">:{</span><span class="s2">"start_date"</span><span class="p">:</span><span class="s2">"2018-01-10T17:42:17.12"</span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"device"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='query-parameters-3'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>email</td>
+<td>false</td>
+<td>Email</td>
+</tr>
+<tr>
+<td>password</td>
+<td>false</td>
+<td>Password</td>
+</tr>
+<tr>
+<td>name</td>
+<td>false</td>
+<td>Name</td>
+</tr>
+<tr>
+<td>address</td>
+<td>false</td>
+<td>The users address</td>
+</tr>
+<tr>
+<td>country</td>
+<td>false</td>
+<td>The country the user is living in</td>
+</tr>
+<tr>
+<td>age</td>
+<td>false</td>
+<td>Age of the user. Defaults to -1</td>
+</tr>
+<tr>
+<td>activity_level</td>
+<td>false</td>
+<td>How active the user is. From 0-3</td>
+</tr>
+<tr>
+<td>admin</td>
+<td>false</td>
+<td>If you want to make user into admin or super user</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>PATCH http://207.154.254.66/user/:id</code></p>
 
-<p>The Kittn API uses the following error codes:</p>
+<p><code>PATCH http://207.154.254.66/user/:email</code></p>
+
+<p>Take in mind that email must be in format test-test-dk</p>
+<h3 id='errors-5'>Errors</h3>
+<p>If the API call is unsuccesful the following errors can occur</p>
+
+<p><code>422: Unprocessable entity</code></p>
+<h2 id='updating-users-password'>Updating users password</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test123456"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"password_confirmation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test123456"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Api will respond with:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@test.dk"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"patch_test"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"activity_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@test.dk"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-16T08:03:39.384Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-16T09:11:28.119Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_test"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your password has been successfully updated."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint is used to change a users password. The user is found through the headers sent with the request.</p>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request -- Your request sucks.</td>
+<td>password</td>
+<td>true</td>
+<td>New password</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>password_confirmation</td>
+<td>true</td>
+<td>Repeat of new password</td>
 </tr>
 </tbody></table>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>PUT http://207.154.254.66/auth/password</code></p>
+<h3 id='errors-6'>Errors</h3>
+<p>If the API call is unsuccesful the following errors can occur</p>
+
+<p><code>422: Unprocessable entity</code></p>
+<h1 id='test-sessions'>Test Sessions</h1>
+<p>TestSession objects are model representatives of the tests the
+ will have to take during the course of his training. It is from these that the application will base the users training.</p>
+
+<p>User can have multiple Test sessions but only the latest one will be used for calculations if user decides to create new Training session.</p>
+<h2 id='get-multiple-test-sessions'>Get multiple test sessions</h2>
+<blockquote>
+<p>Api will respond with:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"peak_exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"peak_insp"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-14T12:29:56.422Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"peak_exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"peak_insp"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-14T12:29:32.564Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"peak_exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"peak_insp"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-14T12:24:12.694Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>1 page is 20 TrainingSessions.</p>
+
+<p>You can GET a specific TestSession afterwards to get more information about it specifically.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>?page=1</td>
+<td>false</td>
+<td>Which page to fetch. Defaults to page 1</td>
+</tr>
+</tbody></table>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET http://207.154.254.66/users/:id/test_sessions</code></p>
+<h3 id='errors-7'>Errors</h3>
+<p>If the API call is unsuccesful the following errors can occur</p>
+
+<p><code>404: Not found</code></p>
+<h3 id='super-user-2'>Super user</h3>
+<p>Super users have endpoints slightly different because they can access not only their test sessions but every test session possible.</p>
+
+<p><code>GET http://207.154.254.66/users/:adminId/test_sessions/:idOfAnyUser</code></p>
+
+<p>:adminId can be either id of the admin user or he email.</p>
+
+<p>If admin wants to access his own test sessions, he should do it with this same url but with his Id/email used at the end aswell.</p>
+<h2 id='get-one-test-session'>Get one test session</h2>
+<blockquote>
+<p>The api will respond with :</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"peak_exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"peak_insp"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"avg_exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"avg_insp"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rec_graph_func"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-14T12:29:56.422Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint gets one (1) specific TestSession. This is done after the above request to get more information for a certain TestSession.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET http://207.154.254.66/users/:user_id/test_sessions/:id</code></p>
+<h3 id='errors-8'>Errors</h3>
+<p>If the API call is unsuccesful the following errors can occur</p>
+
+<p><code>404: Not found</code></p>
+<h3 id='super-user-3'>Super user</h3>
+<p>Super user can access any test session but the end point looks like this</p>
+
+<p><code>GET http://207.154.254.66/users/:adminId/test_sessions/:idOfAnyUser/specific_test_session/:id</code></p>
+
+<p>The last :id represents the id of specific test session which super user wish to retreive.</p>
+
+<p>Also instead of :adminId and :idOfAnyUser you can use emails but Id is more preferable.</p>
+<h2 id='post-test-sessions'>Post test sessions</h2>
+<blockquote>
+<p>Request should look like following:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"test"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T00:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"peak_exp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"peak_insp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"avg_exp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"avg_insp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>The respond will look like following :</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"peak_exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"peak_insp"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"avg_exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"avg_insp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"rec_graph_func"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-17T08:48:12.171Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-17T08:48:12.171Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>true</td>
+<td>ID of the user</td>
+</tr>
+<tr>
+<td>date</td>
+<td>false</td>
+<td>Date when the training was completed</td>
+</tr>
+<tr>
+<td>peak_exp</td>
+<td>false</td>
+<td>Peak expiratory</td>
+</tr>
+<tr>
+<td>peak_insp</td>
+<td>false</td>
+<td>Peak inspiratory</td>
+</tr>
+<tr>
+<td>avg_exp</td>
+<td>false</td>
+<td>Average expiratory</td>
+</tr>
+<tr>
+<td>avg_insp</td>
+<td>false</td>
+<td>Average inspiratory</td>
+</tr>
+</tbody></table>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>POST http://207.154.254.66/users/:user_id/test_sessions</code></p>
+<h3 id='errors-9'>Errors</h3>
+<p>If the API call is unsuccesful the following errors can occur</p>
+
+<p><code>422: Unprocessable entity</code></p>
+<h1 id='training-sessions'>Training sessions</h1>
+<p>TrainingSession objects are created by user, and can be created only if the user completes TestSession. This should be verified in the front end.
+Posting a new Training session will will generate a training with our super secret formula.</p>
+<h2 id='get-training-sessions'>Get Training sessions</h2>
+<blockquote>
+<p>The api will respond with</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"length"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"evaluation_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"performed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"graph_func"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="mf">0.4</span><span class="p">,</span><span class="w">
+            </span><span class="mf">-0.4</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"length"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"evaluation_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"performed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"graph_func"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="mf">0.4</span><span class="p">,</span><span class="w">
+            </span><span class="mf">-0.4</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint gets 1 page of TrainingSessions. The first index in the response will always be the latest TrainingSession (usually one that the user hasn’t completed yet).</p>
+
+<p>1 page is 20 TrainingSessions.</p>
+
+<p>You can GET a specific TrainingSession afterwards to get more information about it specifically.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>?page=1</td>
+<td>false</td>
+<td>Which page to fetch. Defaults to page 1</td>
+</tr>
+</tbody></table>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>GET http://207.154.254.66/users/:id/training_sessions</code></p>
+<h3 id='errors-10'>Errors</h3>
+<p>If the API call is unsuccesful the following errors can occur</p>
+
+<p><code>404: Not found</code></p>
+<h3 id='super-user-4'>Super user</h3>
+<p>Same as with test_sessions</p>
+
+<p><code>GET http://207.154.254.66/users/:adminId/training_sessions/:idOfAnyUser</code></p>
+
+<p>For more information you can look at the Super User/Admin cards in Trello</p>
+<h2 id='get-one-training-session'>Get one Training session</h2>
+<blockquote>
+<p>The Api will respond with:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"exp_hole_setting"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"insp_hole_setting"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"graph_func"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mf">0.4</span><span class="p">,</span><span class="w">
+        </span><span class="mf">-0.4</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"length"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"evaluation_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"performed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cal_lung_capacity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint gets one (1) specific TrainingSession. This is done after the above request to get more information for a certain TrainingSession.</p>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>GET http://207.154.254.66/users/:training_id/training_sessions/:id</code></p>
+<h3 id='errors-11'>Errors</h3>
+<p>If the API call is unsuccesful the following errors can occur</p>
+
+<p><code>404: Not found</code></p>
+<h3 id='super-user-5'>Super user</h3>
+<p>Same as with Test session</p>
+
+<p><code>GET http://207.154.254.66/users/:adminId/training_sessions/:idOfAnyUser/specific_training_session/:id</code></p>
+
+<p>For more information you can look at the Super User/Admin cards in Trello</p>
+<h2 id='post-training-session'>Post training session</h2>
+<blockquote>
+<p>The post request can look like following:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"training"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"exp_hole_setting"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"insp_hole_setting"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"graph_func"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mf">0.4</span><span class="p">,</span><span class="w">
+        </span><span class="mf">-0.4</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">12389429</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"evaluation_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"performed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cal_lung_capacity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Training session contains the latest/newest Test Session Id based on which we do some calculations.</p>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>POST http://207.154.254.66/users/:user_id/training_sessions</code></p>
+<h2 id='patch-training-session'>Patch training session</h2>
+<blockquote>
+<p>your request shoud look like following:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"training"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">12389429</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>The api will respond with:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"exp_hole_setting"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"insp_hole_setting"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"graph_func"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mf">0.4</span><span class="p">,</span><span class="w">
+        </span><span class="mf">-0.4</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">12389429</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"evaluation_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"performed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cal_lung_capacity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>PATCHing a TrainingSession. If the TrainingSession is completed, there must be a value performed set to True.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>true</td>
+<td>ID of the user</td>
+</tr>
+<tr>
+<td>performed</td>
+<td>false</td>
+<td>If the training has been performed. Not required but should be set</td>
+</tr>
+<tr>
+<td>date</td>
+<td>false</td>
+<td>The date of completion</td>
+</tr>
+<tr>
+<td>graph_data_x</td>
+<td>false</td>
+<td>X-axis data points. Serialized as array</td>
+</tr>
+<tr>
+<td>graph_data_y</td>
+<td>false</td>
+<td>Y-axis data points. Serialized as array</td>
+</tr>
+<tr>
+<td>cycles</td>
+<td>false</td>
+<td>Array holding information of when a cycle har been completed. One cycle is one top and one bottom</td>
+</tr>
+<tr>
+<td>exp_hole_setting</td>
+<td>false</td>
+<td>Diameter of expiratory hole</td>
+</tr>
+<tr>
+<td>insp_hole_setting</td>
+<td>false</td>
+<td>Diameter of inspiratory hole</td>
+</tr>
+<tr>
+<td>evaluation_score</td>
+<td>false</td>
+<td>How well the user performed the training</td>
+</tr>
+<tr>
+<td>length</td>
+<td>false</td>
+<td>Time in miliseconds</td>
+</tr>
+<tr>
+<td>difficulty_reduction</td>
+<td>false</td>
+<td>When and how much the difficulty has been reduced. Needs more work!!</td>
+</tr>
+<tr>
+<td>cal_lung_capacity</td>
+<td>false</td>
+<td>Calculated user lung capacity</td>
+</tr>
+</tbody></table>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>PATCH http://207.154.254.66/users/:user_id/training_sessions/:id</code></p>
+<h3 id='errors-12'>Errors</h3>
+<p>If the API call is unsuccesful the following errors can occur</p>
+
+<p><code>422: Unprocessable entity</code></p>
+<h1 id='performances'>Performances</h1>
+<p>We collect statistics about user from his training session if the training session is completed and based on the values we calculate
+his weekly, monthly and yearly performance.</p>
+
+<p>Performances are collected automatically in the Api and are stored in the form of hash values.</p>
+<h2 id='get-performances'>Get Performances</h2>
+<blockquote>
+<p>The api will respond with:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"id"</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span><span class="s2">"avg_weekly"</span><span class="p">:{</span><span class="s2">"start_date"</span><span class="p">:</span><span class="s2">"2018-01-10T17:42:17.127Z"</span><span class="p">,</span><span class="s2">"1"</span><span class="p">:{</span><span class="s2">"avg_evaluation"</span><span class="p">:</span><span class="mf">5.4</span><span class="p">,</span><span class="s2">"num_entries"</span><span class="p">:</span><span class="mi">5</span><span class="p">}},</span><span class="w">
+</span><span class="s2">"avg_monthly"</span><span class="p">:{</span><span class="s2">"start_date"</span><span class="p">:</span><span class="s2">"2018-01-10T17:42:17.127Z"</span><span class="p">,</span><span class="s2">"0"</span><span class="p">:{</span><span class="s2">"avg_evaluation"</span><span class="p">:</span><span class="mf">5.4</span><span class="p">,</span><span class="s2">"num_entries"</span><span class="p">:</span><span class="mi">5</span><span class="p">}},</span><span class="w">
+</span><span class="s2">"avg_yearly"</span><span class="p">:{</span><span class="s2">"start_date"</span><span class="p">:</span><span class="s2">"2018-01-10T17:42:17.127Z"</span><span class="p">,</span><span class="s2">"0"</span><span class="p">:{</span><span class="s2">"avg_evaluation"</span><span class="p">:</span><span class="mf">5.4</span><span class="p">,</span><span class="s2">"num_entries"</span><span class="p">:</span><span class="mi">5</span><span class="p">}}}</span><span class="w">
+</span></code></pre>
+<p>The api will respond with the id of performance, their starting date, average evaluation, number of entries and the number of which month/week/year it is in. If it is first Week or second or third etc.</p>
+
+<p>All the following calculations must be done in the front end of the application.</p>
+<h3 id='http-request-14'>HTTP Request</h3>
+<p><code>Get http://207.154.254.66/users/:user_id/performances</code></p>
+<h1 id='errors'>Errors</h1>
+<p>I’ve chosen not to list HTTP response codes here as they can be looked up on Google.
+I’ve included all our own specialized error messages that you might meet when using our API.</p>
 
       </div>
       <div class="dark-box">
