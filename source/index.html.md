@@ -642,64 +642,6 @@ Training session contains the latest/newest Test Session Id based on which we do
 ###HTTP Request
 `POST http://207.154.254.66/users/:user_id/training_sessions`
 
-
-## Patch training session
-
-> your request shoud look like following:
-
-```json
-{
-  "training": {
-    "length": 12389429
-  }
-}
-```
-
-> The api will respond with:
-
-```json
-{
-    "id": 18,
-    "exp_hole_setting": 8,
-    "insp_hole_setting": 8,
-    "graph_func": [
-        0.4,
-        -0.4
-    ],
-    "length": 12389429,
-    "evaluation_score": 0,
-    "performed": false,
-    "cal_lung_capacity": null
-}
-```
-
-PATCHing a TrainingSession. If the TrainingSession is completed, there must be a value performed set to True.
-
-Parameter | Required | Description
---------- | ------- | -----------
-user_id	| true |	ID of the user
-performed	|false |	If the training has been performed. Not required but should be set
-date |	false	| The date of completion
-graph_data_x	| false |	X-axis data points. Serialized as array
-graph_data_y |	false	| Y-axis data points. Serialized as array
-cycles |	false |	Array holding information of when a cycle har been completed. One cycle is one top and one bottom
-exp_hole_setting	| false |	Diameter of expiratory hole
-insp_hole_setting	 | false	| Diameter of inspiratory hole
-evaluation_score | false	 | How well the user performed the training
-length	| false	| Time in miliseconds
-difficulty_reduction |	false	 | When and how much the difficulty has been reduced. Needs more work!!
-cal_lung_capacity |	false	| Calculated user lung capacity
-
-
-
-###HTTP Request
-`PATCH http://207.154.254.66/users/:user_id/training_sessions/:id`
-
-###Errors
-If the API call is unsuccesful the following errors can occur
-
-`422: Unprocessable entity`
-
 #Performances
 
 We collect statistics about user from his training session if the training session is completed and based on the values we calculate
