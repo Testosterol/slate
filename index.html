@@ -278,9 +278,6 @@
                   <li>
                     <a href="#post-training-session" class="toc-h2 toc-link" data-title="Post training session">Post training session</a>
                   </li>
-                  <li>
-                    <a href="#patch-training-session" class="toc-h2 toc-link" data-title="Patch training session">Patch training session</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -965,109 +962,6 @@ Posting a new Training session will will generate a training with our super secr
 <p>Training session contains the latest/newest Test Session Id based on which we do some calculations.</p>
 <h3 id='http-request-12'>HTTP Request</h3>
 <p><code>POST http://207.154.254.66/users/:user_id/training_sessions</code></p>
-<h2 id='patch-training-session'>Patch training session</h2>
-<blockquote>
-<p>your request shoud look like following:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"training"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">12389429</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>The api will respond with:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"exp_hole_setting"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"insp_hole_setting"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"graph_func"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="mf">0.4</span><span class="p">,</span><span class="w">
-        </span><span class="mf">-0.4</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">12389429</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"evaluation_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"performed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cal_lung_capacity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>PATCHing a TrainingSession. If the TrainingSession is completed, there must be a value performed set to True.</p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>user_id</td>
-<td>true</td>
-<td>ID of the user</td>
-</tr>
-<tr>
-<td>performed</td>
-<td>false</td>
-<td>If the training has been performed. Not required but should be set</td>
-</tr>
-<tr>
-<td>date</td>
-<td>false</td>
-<td>The date of completion</td>
-</tr>
-<tr>
-<td>graph_data_x</td>
-<td>false</td>
-<td>X-axis data points. Serialized as array</td>
-</tr>
-<tr>
-<td>graph_data_y</td>
-<td>false</td>
-<td>Y-axis data points. Serialized as array</td>
-</tr>
-<tr>
-<td>cycles</td>
-<td>false</td>
-<td>Array holding information of when a cycle har been completed. One cycle is one top and one bottom</td>
-</tr>
-<tr>
-<td>exp_hole_setting</td>
-<td>false</td>
-<td>Diameter of expiratory hole</td>
-</tr>
-<tr>
-<td>insp_hole_setting</td>
-<td>false</td>
-<td>Diameter of inspiratory hole</td>
-</tr>
-<tr>
-<td>evaluation_score</td>
-<td>false</td>
-<td>How well the user performed the training</td>
-</tr>
-<tr>
-<td>length</td>
-<td>false</td>
-<td>Time in miliseconds</td>
-</tr>
-<tr>
-<td>difficulty_reduction</td>
-<td>false</td>
-<td>When and how much the difficulty has been reduced. Needs more work!!</td>
-</tr>
-<tr>
-<td>cal_lung_capacity</td>
-<td>false</td>
-<td>Calculated user lung capacity</td>
-</tr>
-</tbody></table>
-<h3 id='http-request-13'>HTTP Request</h3>
-<p><code>PATCH http://207.154.254.66/users/:user_id/training_sessions/:id</code></p>
-<h3 id='errors-12'>Errors</h3>
-<p>If the API call is unsuccesful the following errors can occur</p>
-
-<p><code>422: Unprocessable entity</code></p>
 <h1 id='performances'>Performances</h1>
 <p>We collect statistics about user from his training session if the training session is completed and based on the values we calculate
 his weekly, monthly and yearly performance.</p>
@@ -1084,7 +978,7 @@ his weekly, monthly and yearly performance.</p>
 <p>The api will respond with the id of performance, their starting date, average evaluation, number of entries and the number of which month/week/year it is in. If it is first Week or second or third etc.</p>
 
 <p>All the following calculations must be done in the front end of the application.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>Get http://207.154.254.66/users/:user_id/performances</code></p>
 <h1 id='errors'>Errors</h1>
 <p>I’ve chosen not to list HTTP response codes here as they can be looked up on Google.
