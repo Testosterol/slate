@@ -681,11 +681,11 @@ email| false	| false | users email
 address | false	| string | users address
 country | false	| string | users country of origin
 age | false	| integer | users age
-activity_level | integer	| false | activity level of user, default 0
+activity_level | false	| integer | activity level of user, default 0
 weight | false	| integer | users weight
 height | false	| integer | users height
 birthday | false	| string | users birthday
-profile_picture | string	| false | coded profile picture into string, currently not used.
+profile_picture | false	| string | coded profile picture into string, currently not used.
 gender | false	| string | users gender
 nickname| false	| string | users nickname
 admin | false	| boolean | if is user admin/super user or not
