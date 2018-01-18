@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;json&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,10 +211,7 @@
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="json">json</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -293,7 +290,6 @@
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
             <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -309,9 +305,9 @@
 
 <p>Right now the API is only available internally at Aerofit so don’t share anything from within this documentation with anyone outside Aerofit.</p>
 
-<p>Api is primarly coded in ruby on rails. The next development stages will be continuously translated into node.js</p>
+<p>API is primarily coded in ruby on rails. The next development stages will be continuously translated into node.js</p>
 
-<p>Authors of Api are Denis Trebula and Rasmus Reiler.</p>
+<p>Authors of API are Denis Trebula and Rasmus Reiler.</p>
 <h1 id='authentication'>Authentication</h1>
 <p>The Aerofit API uses authentication for almost all endpoints. The authentication system is in charge of keeping a user logged in, and therefore also for scoping API requests to the users resources.</p>
 
@@ -374,7 +370,7 @@
 
 <p>Creating a user with this endpoint successfully also returns the users headers, meaning there’s no need to sign in afterwards.</p>
 
-<p>Assigning user role of a admin will give him more privilages and access to different endpoints for more information.</p>
+<p>Assigning user role of a admin will give him more privileges and access to different endpoints for more information.</p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -444,11 +440,15 @@
 </span></code></pre>
 <p>If a user already exists in the database you must use the sign-in endpoint to retrieve the authentication headers.</p>
 
-<p>Do not forget that the user must use a password which contains:
-           Must contain 6 or more characters.
-           Must contain a digit.
-           Must contain a lower case character.
-           Must contain an upper case character.</p>
+<p>Do not forget that the user must use a password which contains:</p>
+
+<p>Must contain 6 or more characters.</p>
+
+<p>Must contain a digit.</p>
+
+<p>Must contain a lower case character.</p>
+
+<p>Must contain an upper case character.</p>
 
 <p>This is important in order to achieve at least basic security measures.</p>
 <h3 id='query-parameters-2'>Query Parameters</h3>
@@ -473,7 +473,7 @@
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST http://207.154.254.66/auth/sign_in</code></p>
 <h3 id='errors-2'>Errors</h3>
-<p>If the API call is unsuccesful the following errors can occur</p>
+<p>If the API call is unsuccessful the following errors can occur</p>
 
 <p><code>401: Unauthorized</code></p>
 <h2 id='sign-out'>SIGN OUT</h2>
@@ -481,7 +481,7 @@
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>DELETE http://207.154.254.66/auth/sign_out</code></p>
 <h3 id='errors-3'>Errors</h3>
-<p>If the API call is unsuccesful the following errors can occur</p>
+<p>If the API call is unsuccessful the following errors can occur</p>
 
 <p><code>404: Not found</code></p>
 <h1 id='users'>Users</h1>
@@ -987,10 +987,7 @@ I’ve included all our own specialized error messages that you might meet when 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="json">json</a>
           </div>
       </div>
     </div>
