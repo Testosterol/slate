@@ -546,11 +546,11 @@ The TrainingSession only contains the ID and date so you can show the upcoming t
 
 <p><code>GET http://207.154.254.66/users/:email</code></p>
 
-<p>if you want to retreive users by email, email must be in following format: Instead of test@test.dk   use  test-test-dk</p>
+<p>if you want to retrieve users by email, email must be in following format: Instead of test@test.dk   use  test-test-dk</p>
 
 <p>This is due to friendly id library.</p>
 <h3 id='errors-4'>Errors</h3>
-<p>If the API call is unsuccesful the following errors can occur</p>
+<p>If the API call is unsuccessful the following errors can occur</p>
 
 <p><code>404: Not found</code></p>
 <h3 id='super-user'>Super user</h3>
@@ -767,7 +767,7 @@ The TrainingSession only contains the ID and date so you can show the upcoming t
 
 <p>:adminId can be either id of the admin user or he email.</p>
 
-<p>If admin wants to access his own test sessions, he should do it with this same url but with his Id/email used at the end aswell.</p>
+<p>If admin wants to access his own test sessions, he should do it with this same url but with his Id/email used at the end as well.</p>
 <h2 id='get-one-test-session'>Get one test session</h2>
 <blockquote>
 <p>The api will respond with :</p>
@@ -786,7 +786,7 @@ The TrainingSession only contains the ID and date so you can show the upcoming t
 <h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET http://207.154.254.66/users/:user_id/test_sessions/:id</code></p>
 <h3 id='errors-8'>Errors</h3>
-<p>If the API call is unsuccesful the following errors can occur</p>
+<p>If the API call is unsuccessful the following errors can occur</p>
 
 <p><code>404: Not found</code></p>
 <h3 id='super-user-3'>Super user</h3>
@@ -794,7 +794,7 @@ The TrainingSession only contains the ID and date so you can show the upcoming t
 
 <p><code>GET http://207.154.254.66/users/:adminId/test_sessions/:idOfAnyUser/specific_test_session/:id</code></p>
 
-<p>The last :id represents the id of specific test session which super user wish to retreive.</p>
+<p>The last :id represents the id of specific test session which super user wish to retrieve.</p>
 
 <p>Also instead of :adminId and :idOfAnyUser you can use emails but Id is more preferable.</p>
 <h2 id='post-test-sessions'>Post test sessions</h2>
@@ -868,7 +868,7 @@ The TrainingSession only contains the ID and date so you can show the upcoming t
 <h3 id='http-request-9'>HTTP Request</h3>
 <p><code>POST http://207.154.254.66/users/:user_id/test_sessions</code></p>
 <h3 id='errors-9'>Errors</h3>
-<p>If the API call is unsuccesful the following errors can occur</p>
+<p>If the API call is unsuccessful the following errors can occur</p>
 
 <p><code>422: Unprocessable entity</code></p>
 <h1 id='training-sessions'>Training sessions</h1>
@@ -989,7 +989,7 @@ Posting a new Training session will will generate a training with our super secr
 <p>We collect statistics about user from his training session if the training session is completed and based on the values we calculate
 his weekly, monthly and yearly performance.</p>
 
-<p>Performances are collected automatically in the Api and are stored in the form of hash values.</p>
+<p>Performances are collected automatically in the API and are stored in the form of hash values.</p>
 <h2 id='get-performances'>Get Performances</h2>
 <blockquote>
 <p>The api will respond with:</p>
@@ -998,12 +998,14 @@ his weekly, monthly and yearly performance.</p>
 </span><span class="s2">"avg_monthly"</span><span class="p">:{</span><span class="s2">"start_date"</span><span class="p">:</span><span class="s2">"2018-01-10T17:42:17.127Z"</span><span class="p">,</span><span class="s2">"0"</span><span class="p">:{</span><span class="s2">"avg_evaluation"</span><span class="p">:</span><span class="mf">5.4</span><span class="p">,</span><span class="s2">"num_entries"</span><span class="p">:</span><span class="mi">5</span><span class="p">}},</span><span class="w">
 </span><span class="s2">"avg_yearly"</span><span class="p">:{</span><span class="s2">"start_date"</span><span class="p">:</span><span class="s2">"2018-01-10T17:42:17.127Z"</span><span class="p">,</span><span class="s2">"0"</span><span class="p">:{</span><span class="s2">"avg_evaluation"</span><span class="p">:</span><span class="mf">5.4</span><span class="p">,</span><span class="s2">"num_entries"</span><span class="p">:</span><span class="mi">5</span><span class="p">}}}</span><span class="w">
 </span></code></pre>
-<p>The api will respond with the id of performance, their starting date, average evaluation, number of entries and the number of which month/week/year it is in. If it is first Week or second or third etc.</p>
+<p>The API will respond with the id of performance, their starting date, average evaluation, number of entries and the number of which month/week/year it is in. If it is first Week or second or third etc.</p>
 
 <p>All the following calculations must be done in the front end of the application.</p>
 <h3 id='http-request-13'>HTTP Request</h3>
 <p><code>Get http://207.154.254.66/users/:user_id/performances</code></p>
-<h1 id='all-variables-in-each-model'>All Variables in each model</h1><h2 id='user-model'>User model</h2>
+<h1 id='all-variables-in-each-model'>All Variables in each model</h1>
+<p>This section contains basically all the values which you can use/see/get from specific models in database.</p>
+<h2 id='user-model'>User model</h2>
 <table><thead>
 <tr>
 <th>Variable</th>
