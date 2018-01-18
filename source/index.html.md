@@ -2,13 +2,9 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+  - json
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -27,9 +23,9 @@ This is updated as the API is being expanded.
 
 Right now the API is only available internally at Aerofit so don’t share anything from within this documentation with anyone outside Aerofit.
 
-Api is primarly coded in ruby on rails. The next development stages will be continuously translated into node.js
+API is primarily coded in ruby on rails. The next development stages will be continuously translated into node.js
 
-Authors of Api are Denis Trebula and Rasmus Reiler.
+Authors of API are Denis Trebula and Rasmus Reiler.
 
 # Authentication
 
@@ -97,7 +93,7 @@ This endpoint is used to create a new User in the database. This is preferably t
 
 Creating a user with this endpoint successfully also returns the users headers, meaning there’s no need to sign in afterwards.
 
-Assigning user role of a admin will give him more privilages and access to different endpoints for more information.
+Assigning user role of a admin will give him more privileges and access to different endpoints for more information.
 
 ### Query Parameters
 
@@ -153,9 +149,13 @@ If the API call is unsuccesful the following errors can occur
 If a user already exists in the database you must use the sign-in endpoint to retrieve the authentication headers.
 
 Do not forget that the user must use a password which contains:
+
            Must contain 6 or more characters.
+
            Must contain a digit.
+
            Must contain a lower case character.
+
            Must contain an upper case character.
 
 This is important in order to achieve at least basic security measures.
@@ -171,7 +171,7 @@ password | true | Users password
 `POST http://207.154.254.66/auth/sign_in`
 
 ###Errors
-If the API call is unsuccesful the following errors can occur
+If the API call is unsuccessful the following errors can occur
 
 `401: Unauthorized`
 
@@ -183,7 +183,7 @@ This endpoint is used to logout a user. The user is found through the request he
 `DELETE http://207.154.254.66/auth/sign_out`
 
 ###Errors
-If the API call is unsuccesful the following errors can occur
+If the API call is unsuccessful the following errors can occur
 
 `404: Not found`
 
