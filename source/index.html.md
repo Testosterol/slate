@@ -666,3 +666,84 @@ All the following calculations must be done in the front end of the application.
 
 ###HTTP Request
 `Get http://207.154.254.66/users/:user_id/performances`
+
+#All Variables in each model
+
+##User model
+
+Variable | Required | Type | Description
+--------- | ------- | ----------- | -----------
+provider | true	| string | name of the provider e.g. facebook/gmail, currently not used.
+uid | true	| string | id of user
+password | true	| string | users password
+name | false	| false | users name
+email| false	| false | users email
+address | false	| string | users address
+country | false	| string | users country of origin
+age | false	| integer | users age
+activity_level | integer	| false | activity level of user, default 0
+weight | false	| integer | users weight
+height | false	| integer | users height
+birthday | false	| string | users birthday
+profile_picture | string	| false | coded profile picture into string, currently not used.
+gender | false	| string | users gender
+nickname| false	| string | users nickname
+admin | false	| boolean | if is user admin/super user or not
+slug | false	| string | slugged version of email e.g. (test-test-dk)
+
+##Test session model
+
+Variable | Required | Type | Description
+--------- | ------- | ----------- | -----------
+user_id | true	| integer | users id
+peak_exp | false	| float | expiratory peak
+peak_insp | false	| float | inspiratory peak
+avg_exp | false	| float | average expiratory
+avg_insp| false	| float | average inspiratory
+rec_graph_func | false	| string | graph function
+
+##Training session model
+
+Variable | Required | Type | Description
+--------- | ------- | ----------- | -----------
+user_id | true	| integer | users id
+evaluation_score | false	| float | evaluated score
+length | false	| integer | length of the training
+difficulty_reduction | false	| string | reduction of dificulty
+performed | false	| boolean | if user performed training(Not necessary to use)
+cal_lung_capacity | false	| string | lung capacity
+exp | false	| decimal | expiratory
+insp | false	| decimal | inspiratory
+avg_cycle | false	| string | average cycle
+test_peak_exp | false	| integer | peak expiratory from test session
+test_peak_insp | false	| integer | peak inspiratory from test session
+graph_static_values | false	| string | graph  values
+test_id | false	| integer | id of test session from which training is created
+
+
+##Performances model
+
+Variable | Required | Type | Description
+--------- | ------- | ----------- | -----------
+user_id | true	| integer | users id
+avg_weekly | false	| string | Average performance values separated by weeks
+avg_monthly | false	| string | Average performance values separated by months
+avg_yearly | false	| string | Average performance values separated by years
+created_at| true	| datetime | creation date
+updated_at | true	| datetime | update date
+
+##Devices model(not used)
+
+Variable | Required | Type | Description
+--------- | ------- | ----------- | -----------
+device_id | true	| string | devices id
+activation_date | datetime	| string | Date of activation
+created_at | true	| datetime | Date of creation
+updated_at | true	| datetime | Date of last update
+user_id| false	| integer | users id
+
+# ERD diagram of database
+
+Models AdminUser and Active Admin::Comment are not currently in use.
+
+[Erd diagram](https://drive.google.com/open?id=1Uqip1hhOpTRkyJMrOJLEorWx6fT-llEm)
