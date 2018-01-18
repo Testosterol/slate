@@ -286,6 +286,29 @@
               </ul>
           </li>
           <li>
+            <a href="#all-variables-in-each-model" class="toc-h1 toc-link" data-title="All Variables in each model">All Variables in each model</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#user-model" class="toc-h2 toc-link" data-title="User model">User model</a>
+                  </li>
+                  <li>
+                    <a href="#test-session-model" class="toc-h2 toc-link" data-title="Test session model">Test session model</a>
+                  </li>
+                  <li>
+                    <a href="#training-session-model" class="toc-h2 toc-link" data-title="Training session model">Training session model</a>
+                  </li>
+                  <li>
+                    <a href="#performances-model" class="toc-h2 toc-link" data-title="Performances model">Performances model</a>
+                  </li>
+                  <li>
+                    <a href="#devices-model-not-used" class="toc-h2 toc-link" data-title="Devices model(not used)">Devices model(not used)</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#erd-diagram-of-database" class="toc-h1 toc-link" data-title="ERD diagram of database">ERD diagram of database</a>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </div>
@@ -980,6 +1003,342 @@ his weekly, monthly and yearly performance.</p>
 <p>All the following calculations must be done in the front end of the application.</p>
 <h3 id='http-request-13'>HTTP Request</h3>
 <p><code>Get http://207.154.254.66/users/:user_id/performances</code></p>
+<h1 id='all-variables-in-each-model'>All Variables in each model</h1><h2 id='user-model'>User model</h2>
+<table><thead>
+<tr>
+<th>Variable</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>provider</td>
+<td>true</td>
+<td>string</td>
+<td>name of the provider e.g. facebook/gmail, currently not used.</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>true</td>
+<td>string</td>
+<td>id of user</td>
+</tr>
+<tr>
+<td>password</td>
+<td>true</td>
+<td>string</td>
+<td>users password</td>
+</tr>
+<tr>
+<td>name</td>
+<td>false</td>
+<td>false</td>
+<td>users name</td>
+</tr>
+<tr>
+<td>email</td>
+<td>false</td>
+<td>false</td>
+<td>users email</td>
+</tr>
+<tr>
+<td>address</td>
+<td>false</td>
+<td>string</td>
+<td>users address</td>
+</tr>
+<tr>
+<td>country</td>
+<td>false</td>
+<td>string</td>
+<td>users country of origin</td>
+</tr>
+<tr>
+<td>age</td>
+<td>false</td>
+<td>integer</td>
+<td>users age</td>
+</tr>
+<tr>
+<td>activity_level</td>
+<td>integer</td>
+<td>false</td>
+<td>activity level of user, default 0</td>
+</tr>
+<tr>
+<td>weight</td>
+<td>false</td>
+<td>integer</td>
+<td>users weight</td>
+</tr>
+<tr>
+<td>height</td>
+<td>false</td>
+<td>integer</td>
+<td>users height</td>
+</tr>
+<tr>
+<td>birthday</td>
+<td>false</td>
+<td>string</td>
+<td>users birthday</td>
+</tr>
+<tr>
+<td>profile_picture</td>
+<td>string</td>
+<td>false</td>
+<td>coded profile picture into string, currently not used.</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>false</td>
+<td>string</td>
+<td>users gender</td>
+</tr>
+<tr>
+<td>nickname</td>
+<td>false</td>
+<td>string</td>
+<td>users nickname</td>
+</tr>
+<tr>
+<td>admin</td>
+<td>false</td>
+<td>boolean</td>
+<td>if is user admin/super user or not</td>
+</tr>
+<tr>
+<td>slug</td>
+<td>false</td>
+<td>string</td>
+<td>slugged version of email e.g. (test-test-dk)</td>
+</tr>
+</tbody></table>
+<h2 id='test-session-model'>Test session model</h2>
+<table><thead>
+<tr>
+<th>Variable</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>true</td>
+<td>integer</td>
+<td>users id</td>
+</tr>
+<tr>
+<td>peak_exp</td>
+<td>false</td>
+<td>float</td>
+<td>expiratory peak</td>
+</tr>
+<tr>
+<td>peak_insp</td>
+<td>false</td>
+<td>float</td>
+<td>inspiratory peak</td>
+</tr>
+<tr>
+<td>avg_exp</td>
+<td>false</td>
+<td>float</td>
+<td>average expiratory</td>
+</tr>
+<tr>
+<td>avg_insp</td>
+<td>false</td>
+<td>float</td>
+<td>average inspiratory</td>
+</tr>
+<tr>
+<td>rec_graph_func</td>
+<td>false</td>
+<td>string</td>
+<td>graph function</td>
+</tr>
+</tbody></table>
+<h2 id='training-session-model'>Training session model</h2>
+<table><thead>
+<tr>
+<th>Variable</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>true</td>
+<td>integer</td>
+<td>users id</td>
+</tr>
+<tr>
+<td>evaluation_score</td>
+<td>false</td>
+<td>float</td>
+<td>evaluated score</td>
+</tr>
+<tr>
+<td>length</td>
+<td>false</td>
+<td>integer</td>
+<td>length of the training</td>
+</tr>
+<tr>
+<td>difficulty_reduction</td>
+<td>false</td>
+<td>string</td>
+<td>reduction of dificulty</td>
+</tr>
+<tr>
+<td>performed</td>
+<td>false</td>
+<td>boolean</td>
+<td>if user performed training(Not necessary to use)</td>
+</tr>
+<tr>
+<td>cal_lung_capacity</td>
+<td>false</td>
+<td>string</td>
+<td>lung capacity</td>
+</tr>
+<tr>
+<td>exp</td>
+<td>false</td>
+<td>decimal</td>
+<td>expiratory</td>
+</tr>
+<tr>
+<td>insp</td>
+<td>false</td>
+<td>decimal</td>
+<td>inspiratory</td>
+</tr>
+<tr>
+<td>avg_cycle</td>
+<td>false</td>
+<td>string</td>
+<td>average cycle</td>
+</tr>
+<tr>
+<td>test_peak_exp</td>
+<td>false</td>
+<td>integer</td>
+<td>peak expiratory from test session</td>
+</tr>
+<tr>
+<td>test_peak_insp</td>
+<td>false</td>
+<td>integer</td>
+<td>peak inspiratory from test session</td>
+</tr>
+<tr>
+<td>graph_static_values</td>
+<td>false</td>
+<td>string</td>
+<td>graph  values</td>
+</tr>
+<tr>
+<td>test_id</td>
+<td>false</td>
+<td>integer</td>
+<td>id of test session from which training is created</td>
+</tr>
+</tbody></table>
+<h2 id='performances-model'>Performances model</h2>
+<table><thead>
+<tr>
+<th>Variable</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>true</td>
+<td>integer</td>
+<td>users id</td>
+</tr>
+<tr>
+<td>avg_weekly</td>
+<td>false</td>
+<td>string</td>
+<td>Average performance values separated by weeks</td>
+</tr>
+<tr>
+<td>avg_monthly</td>
+<td>false</td>
+<td>string</td>
+<td>Average performance values separated by months</td>
+</tr>
+<tr>
+<td>avg_yearly</td>
+<td>false</td>
+<td>string</td>
+<td>Average performance values separated by years</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>true</td>
+<td>datetime</td>
+<td>creation date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>true</td>
+<td>datetime</td>
+<td>update date</td>
+</tr>
+</tbody></table>
+<h2 id='devices-model-not-used'>Devices model(not used)</h2>
+<table><thead>
+<tr>
+<th>Variable</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>device_id</td>
+<td>true</td>
+<td>string</td>
+<td>devices id</td>
+</tr>
+<tr>
+<td>activation_date</td>
+<td>datetime</td>
+<td>string</td>
+<td>Date of activation</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>true</td>
+<td>datetime</td>
+<td>Date of creation</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>true</td>
+<td>datetime</td>
+<td>Date of last update</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>false</td>
+<td>integer</td>
+<td>users id</td>
+</tr>
+</tbody></table>
+<h1 id='erd-diagram-of-database'>ERD diagram of database</h1>
+<p>Models AdminUser and Active Admin::Comment are not currently in use.</p>
+
+<p><a href="https://drive.google.com/open?id=1Uqip1hhOpTRkyJMrOJLEorWx6fT-llEm">Erd diagram</a></p>
 <h1 id='errors'>Errors</h1>
 <p>I’ve chosen not to list HTTP response codes here as they can be looked up on Google.
 I’ve included all our own specialized error messages that you might meet when using our API.</p>
