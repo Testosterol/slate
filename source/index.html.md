@@ -233,12 +233,12 @@ The TrainingSession only contains the ID and date so you can show the upcoming t
 
 `GET http://207.154.254.66/users/:email`
 
-if you want to retreive users by email, email must be in following format: Instead of test@test.dk   use  test-test-dk
+if you want to retrieve users by email, email must be in following format: Instead of test@test.dk   use  test-test-dk
 
 This is due to friendly id library.
 
 ###Errors
-If the API call is unsuccesful the following errors can occur
+If the API call is unsuccessful the following errors can occur
 
 `404: Not found`
 
@@ -423,7 +423,7 @@ Super users have endpoints slightly different because they can access not only t
 
 :adminId can be either id of the admin user or he email.
 
-If admin wants to access his own test sessions, he should do it with this same url but with his Id/email used at the end aswell.
+If admin wants to access his own test sessions, he should do it with this same url but with his Id/email used at the end as well.
 
 ## Get one test session
 
@@ -447,7 +447,7 @@ This endpoint gets one (1) specific TestSession. This is done after the above re
 `GET http://207.154.254.66/users/:user_id/test_sessions/:id`
 
 ###Errors
-If the API call is unsuccesful the following errors can occur
+If the API call is unsuccessful the following errors can occur
 
 `404: Not found`
 
@@ -457,7 +457,7 @@ Super user can access any test session but the end point looks like this
 
 `GET http://207.154.254.66/users/:adminId/test_sessions/:idOfAnyUser/specific_test_session/:id`
 
-The last :id represents the id of specific test session which super user wish to retreive.
+The last :id represents the id of specific test session which super user wish to retrieve.
 
 Also instead of :adminId and :idOfAnyUser you can use emails but Id is more preferable.
 
@@ -508,7 +508,7 @@ avg_insp |	false |	Average inspiratory
 `POST http://207.154.254.66/users/:user_id/test_sessions`
 
 ###Errors
-If the API call is unsuccesful the following errors can occur
+If the API call is unsuccessful the following errors can occur
 
 `422: Unprocessable entity`
 
@@ -647,7 +647,7 @@ Training session contains the latest/newest Test Session Id based on which we do
 We collect statistics about user from his training session if the training session is completed and based on the values we calculate
 his weekly, monthly and yearly performance.
 
-Performances are collected automatically in the Api and are stored in the form of hash values.
+Performances are collected automatically in the API and are stored in the form of hash values.
 
 ##Get Performances
 
@@ -659,7 +659,7 @@ Performances are collected automatically in the Api and are stored in the form o
 "avg_yearly":{"start_date":"2018-01-10T17:42:17.127Z","0":{"avg_evaluation":5.4,"num_entries":5}}}
 ```
 
-The api will respond with the id of performance, their starting date, average evaluation, number of entries and the number of which month/week/year it is in. If it is first Week or second or third etc.
+The API will respond with the id of performance, their starting date, average evaluation, number of entries and the number of which month/week/year it is in. If it is first Week or second or third etc.
 
 All the following calculations must be done in the front end of the application.
 
@@ -668,6 +668,8 @@ All the following calculations must be done in the front end of the application.
 `Get http://207.154.254.66/users/:user_id/performances`
 
 #All Variables in each model
+
+This section contains basically all the values which you can use/see/get from specific models in database.
 
 ##User model
 
