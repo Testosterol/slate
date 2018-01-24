@@ -511,6 +511,10 @@
 <p>The User object is the central object in the API. Every user has one. It links every other object together and is used for authorization of resources. It contains information that pertains to that one specific user.</p>
 
 <p>User is linked with Test_sessions, Training_sessions, Performances, Devices.</p>
+
+<p>Allowed methods: Get, Patch</p>
+
+<p>Post for new user is part of registration.</p>
 <h2 id='get-user'>Get User</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@test.dk"</span><span class="p">,</span><span class="w">
@@ -712,6 +716,8 @@ The TrainingSession only contains the ID and date so you can show the upcoming t
  will have to take during the course of his training. It is from these that the application will base the users training.</p>
 
 <p>User can have multiple Test sessions but only the latest one will be used for calculations if user decides to create new Training session.</p>
+
+<p>Allowed methods : Get, Post , Patch</p>
 <h2 id='get-multiple-test-sessions'>Get multiple test sessions</h2>
 <blockquote>
 <p>Api will respond with:</p>
@@ -874,6 +880,8 @@ The TrainingSession only contains the ID and date so you can show the upcoming t
 <h1 id='training-sessions'>Training sessions</h1>
 <p>TrainingSession objects are created by user, and can be created only if the user completes TestSession. This should be verified in the front end.
 Posting a new Training session will will generate a training with our super secret formula.</p>
+
+<p>Allowed methods : Get , Post</p>
 <h2 id='get-training-sessions'>Get Training sessions</h2>
 <blockquote>
 <p>The api will respond with</p>
@@ -988,6 +996,10 @@ Posting a new Training session will will generate a training with our super secr
 <h1 id='performances'>Performances</h1>
 <p>We collect statistics about user from his training session if the training session is completed and based on the values we calculate
 his weekly, monthly and yearly performance.</p>
+
+<p>Values are calculated and saved after posting new Training session. Creating of Training session goes in following steps : 7
+Create training session from test, update mentioned training session with &quot;Post&quot; method attributes. Therefore we use method
+after_update for calculating Performances.</p>
 
 <p>Performances are collected automatically in the API and are stored in the form of hash values.</p>
 <h2 id='get-performances'>Get Performances</h2>
@@ -1338,7 +1350,9 @@ his weekly, monthly and yearly performance.</p>
 </tr>
 </tbody></table>
 <h1 id='erd-diagram-of-database'>ERD diagram of database</h1>
-<p>Models AdminUser and Active Admin::Comment are not currently in use.</p>
+<p>Models AdminUser and Active Admin::Comment are not currently in use since they are part of ActiveAdmin and therefore are used only for viewing and updating mode in database.</p>
+
+<p>Do not confuse AdminUser with super user / admin privilages. For mentioned privilages there is a field in User table called <code>admin</code></p>
 
 <p><a href="https://drive.google.com/open?id=1Uqip1hhOpTRkyJMrOJLEorWx6fT-llEm">Erd diagram</a></p>
 <h1 id='errors'>Errors</h1>
