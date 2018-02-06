@@ -107,7 +107,7 @@ admin | false | To make user into super user/admin
 
 ###HTTP Request
 
-`POST http://207.154.254.66/auth`
+`POST https://207.154.254.66/auth`
 
 ###Errors
 If the API call is unsuccesful the following errors can occur
@@ -168,7 +168,7 @@ email | true | Users email
 password | true | Users password
 
 ###HTTP Request
-`POST http://207.154.254.66/auth/sign_in`
+`POST https://207.154.254.66/auth/sign_in`
 
 ###Errors
 If the API call is unsuccessful the following errors can occur
@@ -180,7 +180,7 @@ If the API call is unsuccessful the following errors can occur
 This endpoint is used to logout a user. The user is found through the request headers.
 
 ###HTTP Request
-`DELETE http://207.154.254.66/auth/sign_out`
+`DELETE https://207.154.254.66/auth/sign_out`
 
 ###Errors
 If the API call is unsuccessful the following errors can occur
@@ -233,9 +233,9 @@ This endpoint responds with a user. It also embeds latest TrainingSession, TestS
 The TrainingSession only contains the ID and date so you can show the upcoming training to the use in the application.
 
 ###HTTP Request
-`GET http://207.154.254.66/users/:id`
+`GET https://207.154.254.66/users/:id`
 
-`GET http://207.154.254.66/users/:email`
+`GET https://207.154.254.66/users/:email`
 
 if you want to retrieve users by email, email must be in following format: Instead of test@test.dk   use  test-test-dk
 
@@ -308,9 +308,9 @@ activity_level | false | How active the user is. From 0-3
 admin |	false	| If you want to make user into admin or super user
 
 ###HTTP Request
-`PATCH http://207.154.254.66/user/:id`
+`PATCH https://207.154.254.66/user/:id`
 
-`PATCH http://207.154.254.66/user/:email`
+`PATCH https://207.154.254.66/user/:email`
 
 Take in mind that email must be in format test-test-dk
 
@@ -360,7 +360,7 @@ password | true |	New password
 password_confirmation |	true |	Repeat of new password
 
 ###HTTP Request
-`PUT http://207.154.254.66/auth/password`
+`PUT https://207.154.254.66/auth/password`
 
 ###Errors
 If the API call is unsuccesful the following errors can occur
@@ -414,7 +414,7 @@ Parameter | Required | Description
 ?page=1 | false	| Which page to fetch. Defaults to page 1
 
 ###HTTP Request
-`GET http://207.154.254.66/users/:id/test_sessions`
+`GET https://207.154.254.66/users/:id/test_sessions`
 
 ###Errors
 If the API call is unsuccesful the following errors can occur
@@ -425,7 +425,7 @@ If the API call is unsuccesful the following errors can occur
 
 Super users have endpoints slightly different because they can access not only their test sessions but every test session possible.
 
-`GET http://207.154.254.66/users/:adminId/test_sessions/:idOfAnyUser`
+`GET https://207.154.254.66/users/:adminId/test_sessions/:idOfAnyUser`
 
 :adminId can be either id of the admin user or he email.
 
@@ -450,7 +450,7 @@ If admin wants to access his own test sessions, he should do it with this same u
 This endpoint gets one (1) specific TestSession. This is done after the above request to get more information for a certain TestSession.
 
 ###HTTP Request
-`GET http://207.154.254.66/users/:user_id/test_sessions/:id`
+`GET https://207.154.254.66/users/:user_id/test_sessions/:id`
 
 ###Errors
 If the API call is unsuccessful the following errors can occur
@@ -461,7 +461,7 @@ If the API call is unsuccessful the following errors can occur
 
 Super user can access any test session but the end point looks like this
 
-`GET http://207.154.254.66/users/:adminId/test_sessions/:idOfAnyUser/specific_test_session/:id`
+`GET https://207.154.254.66/users/:adminId/test_sessions/:idOfAnyUser/specific_test_session/:id`
 
 The last :id represents the id of specific test session which super user wish to retrieve.
 
@@ -511,7 +511,7 @@ avg_insp |	false |	Average inspiratory
 
 
 ###HTTP Request
-`POST http://207.154.254.66/users/:user_id/test_sessions`
+`POST https://207.154.254.66/users/:user_id/test_sessions`
 
 ###Errors
 If the API call is unsuccessful the following errors can occur
@@ -568,7 +568,7 @@ Parameter | Required | Description
 
 
 ###HTTP Request
-`GET http://207.154.254.66/users/:id/training_sessions`
+`GET https://207.154.254.66/users/:id/training_sessions`
 
 ###Errors
 If the API call is unsuccesful the following errors can occur
@@ -580,7 +580,7 @@ If the API call is unsuccesful the following errors can occur
 
 Same as with test_sessions
 
-`GET http://207.154.254.66/users/:adminId/training_sessions/:idOfAnyUser `
+`GET https://207.154.254.66/users/:adminId/training_sessions/:idOfAnyUser `
 
 For more information you can look at the Super User/Admin cards in Trello
 
@@ -608,7 +608,7 @@ For more information you can look at the Super User/Admin cards in Trello
 This endpoint gets one (1) specific TrainingSession. This is done after the above request to get more information for a certain TrainingSession.
 
 ###HTTP Request
-`GET http://207.154.254.66/users/:training_id/training_sessions/:id`
+`GET https://207.154.254.66/users/:training_id/training_sessions/:id`
 
 ###Errors
 If the API call is unsuccesful the following errors can occur
@@ -619,7 +619,7 @@ If the API call is unsuccesful the following errors can occur
 
 Same as with Test session
 
-`GET http://207.154.254.66/users/:adminId/training_sessions/:idOfAnyUser/specific_training_session/:id`
+`GET https://207.154.254.66/users/:adminId/training_sessions/:idOfAnyUser/specific_training_session/:id`
 
 For more information you can look at the Super User/Admin cards in Trello
 
@@ -648,7 +648,7 @@ Training session contains the latest/newest Test Session Id based on which we do
 
 
 ###HTTP Request
-`POST http://207.154.254.66/users/:user_id/training_sessions`
+`POST https://207.154.254.66/users/:user_id/training_sessions`
 
 #Performances
 
@@ -678,7 +678,7 @@ All the following calculations must be done in the front end of the application.
 
 
 ###HTTP Request
-`Get http://207.154.254.66/users/:user_id/performances`
+`Get https://207.154.254.66/users/:user_id/performances`
 
 #All Variables in each model
 
@@ -771,7 +771,7 @@ Do not confuse AdminUser with super user / admin privileges. For mentioned privi
 In order to access the database, to see the tables and variables, you must have admin account created by either system admin(Denis) or other users who have privileges to do so.
 
 ###HTTP Request
-`http://207.154.254.66/admin/login`
+`https://207.154.254.66/admin/login`
 
 or
 
