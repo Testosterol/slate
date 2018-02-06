@@ -437,7 +437,7 @@
 </tr>
 </tbody></table>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST http://207.154.254.66/auth</code></p>
+<p><code>POST https://207.154.254.66/auth</code></p>
 <h3 id='errors'>Errors</h3>
 <p>If the API call is unsuccesful the following errors can occur</p>
 
@@ -502,7 +502,7 @@
 </tr>
 </tbody></table>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST http://207.154.254.66/auth/sign_in</code></p>
+<p><code>POST https://207.154.254.66/auth/sign_in</code></p>
 <h3 id='errors-2'>Errors</h3>
 <p>If the API call is unsuccessful the following errors can occur</p>
 
@@ -510,7 +510,7 @@
 <h2 id='sign-out'>SIGN OUT</h2>
 <p>This endpoint is used to logout a user. The user is found through the request headers.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://207.154.254.66/auth/sign_out</code></p>
+<p><code>DELETE https://207.154.254.66/auth/sign_out</code></p>
 <h3 id='errors-3'>Errors</h3>
 <p>If the API call is unsuccessful the following errors can occur</p>
 
@@ -554,9 +554,9 @@
 <p>This endpoint responds with a user. It also embeds latest TrainingSession, TestSession, Device and Performances object.
 The TrainingSession only contains the ID and date so you can show the upcoming training to the use in the application.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
-<p><code>GET http://207.154.254.66/users/:id</code></p>
+<p><code>GET https://207.154.254.66/users/:id</code></p>
 
-<p><code>GET http://207.154.254.66/users/:email</code></p>
+<p><code>GET https://207.154.254.66/users/:email</code></p>
 
 <p>if you want to retrieve users by email, email must be in following format: Instead of test@test.dk   use  test-test-dk</p>
 
@@ -657,9 +657,9 @@ The TrainingSession only contains the ID and date so you can show the upcoming t
 </tr>
 </tbody></table>
 <h3 id='http-request-5'>HTTP Request</h3>
-<p><code>PATCH http://207.154.254.66/user/:id</code></p>
+<p><code>PATCH https://207.154.254.66/user/:id</code></p>
 
-<p><code>PATCH http://207.154.254.66/user/:email</code></p>
+<p><code>PATCH https://207.154.254.66/user/:email</code></p>
 
 <p>Take in mind that email must be in format test-test-dk</p>
 <h3 id='errors-5'>Errors</h3>
@@ -714,7 +714,7 @@ The TrainingSession only contains the ID and date so you can show the upcoming t
 </tr>
 </tbody></table>
 <h3 id='http-request-6'>HTTP Request</h3>
-<p><code>PUT http://207.154.254.66/auth/password</code></p>
+<p><code>PUT https://207.154.254.66/auth/password</code></p>
 <h3 id='errors-6'>Errors</h3>
 <p>If the API call is unsuccesful the following errors can occur</p>
 
@@ -769,7 +769,7 @@ The TrainingSession only contains the ID and date so you can show the upcoming t
 </tr>
 </tbody></table>
 <h3 id='http-request-7'>HTTP Request</h3>
-<p><code>GET http://207.154.254.66/users/:id/test_sessions</code></p>
+<p><code>GET https://207.154.254.66/users/:id/test_sessions</code></p>
 <h3 id='errors-7'>Errors</h3>
 <p>If the API call is unsuccesful the following errors can occur</p>
 
@@ -777,7 +777,7 @@ The TrainingSession only contains the ID and date so you can show the upcoming t
 <h3 id='super-user-2'>Super user</h3>
 <p>Super users have endpoints slightly different because they can access not only their test sessions but every test session possible.</p>
 
-<p><code>GET http://207.154.254.66/users/:adminId/test_sessions/:idOfAnyUser</code></p>
+<p><code>GET https://207.154.254.66/users/:adminId/test_sessions/:idOfAnyUser</code></p>
 
 <p>:adminId can be either id of the admin user or he email.</p>
 
@@ -798,7 +798,7 @@ The TrainingSession only contains the ID and date so you can show the upcoming t
 </span></code></pre>
 <p>This endpoint gets one (1) specific TestSession. This is done after the above request to get more information for a certain TestSession.</p>
 <h3 id='http-request-8'>HTTP Request</h3>
-<p><code>GET http://207.154.254.66/users/:user_id/test_sessions/:id</code></p>
+<p><code>GET https://207.154.254.66/users/:user_id/test_sessions/:id</code></p>
 <h3 id='errors-8'>Errors</h3>
 <p>If the API call is unsuccessful the following errors can occur</p>
 
@@ -806,7 +806,7 @@ The TrainingSession only contains the ID and date so you can show the upcoming t
 <h3 id='super-user-3'>Super user</h3>
 <p>Super user can access any test session but the end point looks like this</p>
 
-<p><code>GET http://207.154.254.66/users/:adminId/test_sessions/:idOfAnyUser/specific_test_session/:id</code></p>
+<p><code>GET https://207.154.254.66/users/:adminId/test_sessions/:idOfAnyUser/specific_test_session/:id</code></p>
 
 <p>The last :id represents the id of specific test session which super user wish to retrieve.</p>
 
@@ -880,7 +880,7 @@ The TrainingSession only contains the ID and date so you can show the upcoming t
 </tr>
 </tbody></table>
 <h3 id='http-request-9'>HTTP Request</h3>
-<p><code>POST http://207.154.254.66/users/:user_id/test_sessions</code></p>
+<p><code>POST https://207.154.254.66/users/:user_id/test_sessions</code></p>
 <h3 id='errors-9'>Errors</h3>
 <p>If the API call is unsuccessful the following errors can occur</p>
 
@@ -937,7 +937,7 @@ Posting a new Training session will will generate a training with our super secr
 </tr>
 </tbody></table>
 <h3 id='http-request-10'>HTTP Request</h3>
-<p><code>GET http://207.154.254.66/users/:id/training_sessions</code></p>
+<p><code>GET https://207.154.254.66/users/:id/training_sessions</code></p>
 <h3 id='errors-10'>Errors</h3>
 <p>If the API call is unsuccesful the following errors can occur</p>
 
@@ -945,7 +945,7 @@ Posting a new Training session will will generate a training with our super secr
 <h3 id='super-user-4'>Super user</h3>
 <p>Same as with test_sessions</p>
 
-<p><code>GET http://207.154.254.66/users/:adminId/training_sessions/:idOfAnyUser</code></p>
+<p><code>GET https://207.154.254.66/users/:adminId/training_sessions/:idOfAnyUser</code></p>
 
 <p>For more information you can look at the Super User/Admin cards in Trello</p>
 <h2 id='get-one-training-session'>Get one Training session</h2>
@@ -968,7 +968,7 @@ Posting a new Training session will will generate a training with our super secr
 </span></code></pre>
 <p>This endpoint gets one (1) specific TrainingSession. This is done after the above request to get more information for a certain TrainingSession.</p>
 <h3 id='http-request-11'>HTTP Request</h3>
-<p><code>GET http://207.154.254.66/users/:training_id/training_sessions/:id</code></p>
+<p><code>GET https://207.154.254.66/users/:training_id/training_sessions/:id</code></p>
 <h3 id='errors-11'>Errors</h3>
 <p>If the API call is unsuccesful the following errors can occur</p>
 
@@ -976,7 +976,7 @@ Posting a new Training session will will generate a training with our super secr
 <h3 id='super-user-5'>Super user</h3>
 <p>Same as with Test session</p>
 
-<p><code>GET http://207.154.254.66/users/:adminId/training_sessions/:idOfAnyUser/specific_training_session/:id</code></p>
+<p><code>GET https://207.154.254.66/users/:adminId/training_sessions/:idOfAnyUser/specific_training_session/:id</code></p>
 
 <p>For more information you can look at the Super User/Admin cards in Trello</p>
 <h2 id='post-training-session'>Post training session</h2>
@@ -1000,7 +1000,7 @@ Posting a new Training session will will generate a training with our super secr
 </span></code></pre>
 <p>Training session contains the latest/newest Test Session Id based on which we do some calculations.</p>
 <h3 id='http-request-12'>HTTP Request</h3>
-<p><code>POST http://207.154.254.66/users/:user_id/training_sessions</code></p>
+<p><code>POST https://207.154.254.66/users/:user_id/training_sessions</code></p>
 <h1 id='performances'>Performances</h1>
 <p>We collect statistics about user from his training session if the training session is completed and based on the values we calculate
 his weekly, monthly and yearly performance.</p>
@@ -1022,7 +1022,7 @@ after_update for calculating Performances.</p>
 
 <p>All the following calculations must be done in the front end of the application.</p>
 <h3 id='http-request-13'>HTTP Request</h3>
-<p><code>Get http://207.154.254.66/users/:user_id/performances</code></p>
+<p><code>Get https://207.154.254.66/users/:user_id/performances</code></p>
 <h1 id='all-variables-in-each-model'>All Variables in each model</h1>
 <p>This section contains basically all the values which you can use/see/get from specific models in database.</p>
 <h2 id='user-model'>User model</h2>
@@ -1372,7 +1372,7 @@ after_update for calculating Performances.</p>
 <h1 id='active-admin-database-overview'>Active Admin / Database Overview</h1>
 <p>In order to access the database, to see the tables and variables, you must have admin account created by either system admin(Denis) or other users who have privileges to do so.</p>
 <h3 id='http-request-14'>HTTP Request</h3>
-<p><code>http://207.154.254.66/admin/login</code></p>
+<p><code>https://207.154.254.66/admin/login</code></p>
 
 <p>or</p>
 
