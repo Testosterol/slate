@@ -193,6 +193,10 @@ The User object is the central object in the API. Every user has one. It links e
 
 User is linked with Test_sessions, Training_sessions, Performances, Devices.
 
+Allowed methods: Get, Patch
+
+Post for new user is part of registration.
+
 ## Get User
 
 ```json
@@ -372,6 +376,8 @@ TestSession objects are model representatives of the tests the
 
 User can have multiple Test sessions but only the latest one will be used for calculations if user decides to create new Training session.
 
+Allowed methods : Get, Post , Patch
+
 ## Get multiple test sessions
 
 >Api will respond with:
@@ -517,6 +523,8 @@ If the API call is unsuccessful the following errors can occur
 TrainingSession objects are created by user, and can be created only if the user completes TestSession. This should be verified in the front end.
 Posting a new Training session will will generate a training with our super secret formula.
 
+Allowed methods : Get , Post
+
 ## Get Training sessions
 
 > The api will respond with
@@ -647,6 +655,11 @@ Training session contains the latest/newest Test Session Id based on which we do
 We collect statistics about user from his training session if the training session is completed and based on the values we calculate
 his weekly, monthly and yearly performance.
 
+Values are calculated and saved after posting new Training session. Creating of Training session goes in following steps : 7
+Create training session from test, update mentioned training session with "Post" method attributes. Therefore we use method
+after_update for calculating Performances.
+
+
 Performances are collected automatically in the API and are stored in the form of hash values.
 
 ##Get Performances
@@ -692,6 +705,7 @@ gender | false	| string | users gender
 nickname| false	| string | users nickname
 admin | false	| boolean | if is user admin/super user or not
 slug | false	| string | slugged version of email e.g. (test-test-dk)
+device_token | false | string | token for the device that user uses
 
 ##Test session model
 
@@ -746,6 +760,19 @@ user_id| false	| integer | users id
 
 # ERD diagram of database
 
-Models AdminUser and Active Admin::Comment are not currently in use.
+Models AdminUser and Active Admin::Comment are not currently in use since they are part of ActiveAdmin and therefore are used only for viewing and updating mode in database.
+
+Do not confuse AdminUser with super user / admin privileges. For mentioned privileges there is a field in User table called `admin`
 
 [Erd diagram](https://drive.google.com/open?id=1Uqip1hhOpTRkyJMrOJLEorWx6fT-llEm)
+
+#Active Admin / Database Overview
+
+In order to access the database, to see the tables and variables, you must have admin account created by either system admin(Denis) or other users who have privileges to do so.
+
+###HTTP Request
+`http://207.154.254.66/admin/login`
+
+or
+
+`https://api.aerofit.dk/admin/login`
