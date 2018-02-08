@@ -317,6 +317,9 @@
               </ul>
           </li>
           <li>
+            <a href="#how-to-report-a-bug-problem" class="toc-h1 toc-link" data-title="How to report a bug/problem">How to report a bug/problem</a>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </div>
@@ -652,6 +655,31 @@ The TrainingSession only contains the ID and date so you can show the upcoming t
 </tr>
 <tr>
 <td>admin</td>
+<td>false</td>
+<td>If you want to make user into admin or super user</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>true</td>
+<td>gender of the user, cannot be blank if you want to update it</td>
+</tr>
+<tr>
+<td>birthday</td>
+<td>true</td>
+<td>birthday of the user, cannot be blank if you want to update it</td>
+</tr>
+<tr>
+<td>height</td>
+<td>true</td>
+<td>height of the user, cannot be blank if you want to update it</td>
+</tr>
+<tr>
+<td>weight</td>
+<td>false</td>
+<td>If you want to make user into admin or super user</td>
+</tr>
+<tr>
+<td>device_token</td>
 <td>false</td>
 <td>If you want to make user into admin or super user</td>
 </tr>
@@ -1377,6 +1405,17 @@ after_update for calculating Performances.</p>
 <p>or</p>
 
 <p><code>https://api.aerofit.dk/admin/login</code></p>
+<h1 id='how-to-report-a-bug-problem'>How to report a bug/problem</h1>
+<p>If you find a bug regarding backend, communication with database, live server or anything else, first follow these steps:</p>
+
+<p>Answer these questions:</p>
+
+<p>1, What problem do I have ?
+2, What causes this problem ?
+3, What are the possible variants to resolve the problem ?
+4, What solution do I propose ?</p>
+
+<p>Only and only after answering these questions report this bug to system admin or backend developer in the channel #backend on Slack.</p>
 <h1 id='errors'>Errors</h1>
 <p>I’ve chosen not to list HTTP response codes here as they can be looked up on Google.
 I’ve included all our own specialized error messages that you might meet when using our API.</p>
