@@ -306,6 +306,11 @@ country |	false |	The country the user is living in
 age |	false |	Age of the user. Defaults to -1
 activity_level | false | How active the user is. From 0-3
 admin |	false	| If you want to make user into admin or super user
+gender|	true |	gender of the user, cannot be blank if you want to update it
+birthday | true | birthday of the user, cannot be blank if you want to update it
+height |	true	| height of the user, cannot be blank if you want to update it
+weight |	false	| If you want to make user into admin or super user
+device_token |	false	| If you want to make user into admin or super user
 
 ###HTTP Request
 `PATCH https://207.154.254.66/user/:id`
@@ -776,3 +781,16 @@ In order to access the database, to see the tables and variables, you must have 
 or
 
 `https://api.aerofit.dk/admin/login`
+
+# How to report a bug/problem
+
+If you find a bug regarding backend, communication with database, live server or anything else, first follow these steps:
+
+Answer these questions:
+
+1, What problem do I have ?
+2, What causes this problem ?
+3, What are the possible variants to resolve the problem ?
+4, What solution do I propose ?
+
+Only and only after answering these questions report this bug to system admin or backend developer in the channel #backend on Slack.
