@@ -789,8 +789,11 @@ If you find a bug regarding backend, communication with database, live server or
 Answer these questions:
 
 1, What problem do I have ?
+
 2, What causes this problem ?
+
 3, What are the possible variants to resolve the problem ?
+
 4, What solution do I propose ?
 
 Only and only after answering these questions report this bug to system admin or backend developer in the channel #backend on Slack.
