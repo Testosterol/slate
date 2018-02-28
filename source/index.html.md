@@ -697,14 +697,25 @@ All the following calculations must be done in the front end of the application.
 
 Each user has one assigned row in the table preferred training which symbolizes its preferred training.
 
-Performances are collected automatically in the API and are stored in the form of hash values.
 
 ##Get preferred training
+
+###HTTP Request
+`Get https://207.154.254.66/users/:user_id/preferred_training`
+
+###Super user
+
+Same as with other models
+
+`GET https://207.154.254.66/users/:adminId/preferred_training/:idOfUserFromWhomYouWantThePreferredTraining`
+
+
+The api will respond with id, program, level, daily session
 
 >The api will respond with:
 
 ```json
-{"id":1,"program":"mahaganska kruva","level":"mahaganska kruva","daily_session":"mahaganska kruva","user_id":66}
+{"id":1,"program":"hard","level":"hard","daily_session":"hard","user_id":66}
 ```
 
 ##Patch preferred training
@@ -719,14 +730,8 @@ Performances are collected automatically in the API and are stored in the form o
 ```
 
 ###HTTP Request
-`Get https://207.154.254.66/users/:user_id/preferred_training`
+
 `Patch https://207.154.254.66/users/:user_id/preferred_training/:id`
-
-###Super user
-
-Same as with other models
-
-`GET https://207.154.254.66/users/:adminId/preferred_training/:idOfUserFromWhomYouWantThePreferredTraining`
 
 
 #All Variables in each model
