@@ -538,6 +538,9 @@ Allowed methods : Get , Post
 [
     {
         "id": 18,
+        "program": "hard",
+        "level": "3",
+        "test_id":"7",
         "length": null,
         "evaluation_score": 0,
         "performed": false,
@@ -548,6 +551,9 @@ Allowed methods : Get , Post
     },
     {
         "id": 17,
+        "program": "hard",
+        "level": "3",
+        "test_id":"7",
         "length": null,
         "evaluation_score": 0,
         "performed": false,
@@ -596,6 +602,9 @@ For more information you can look at the Super User/Admin cards in Trello
 ```json
 {
     "id": 18,
+    "program": "hard",
+    "level": "3",
+    "test_id":"7",
     "exp_hole_setting": 8,
     "insp_hole_setting": 8,
     "graph_func": [
@@ -603,6 +612,9 @@ For more information you can look at the Super User/Admin cards in Trello
         -0.4
     ],
     "length": null,
+    "program": "hard",
+    "level": "3",
+    "test_id":"7",
     "evaluation_score": 0,
     "performed": false,
     "cal_lung_capacity": null
@@ -681,9 +693,41 @@ The API will respond with the id of performance, their starting date, average ev
 
 All the following calculations must be done in the front end of the application.
 
+#Preferred Training
+
+Each user has one assigned row in the table preferred training which symbolizes its preferred training.
+
+Performances are collected automatically in the API and are stored in the form of hash values.
+
+##Get preferred training
+
+>The api will respond with:
+
+```json
+{"id":1,"program":"mahaganska kruva","level":"mahaganska kruva","daily_session":"mahaganska kruva","user_id":66}
+```
+
+##Patch preferred training
+```json
+{
+  "preferred_training": {
+    "program": "hard",
+    "level": "hard",
+    "daily_session": "random"
+  }
+}
+```
 
 ###HTTP Request
-`Get https://207.154.254.66/users/:user_id/performances`
+`Get https://207.154.254.66/users/:user_id/preferred_training`
+`Patch https://207.154.254.66/users/:user_id/preferred_training/:id`
+
+###Super user
+
+Same as with other models
+
+`GET https://207.154.254.66/users/:adminId/preferred_training/:idOfUserFromWhomYouWantThePreferredTraining`
+
 
 #All Variables in each model
 
@@ -740,6 +784,8 @@ test_peak_exp | false	| integer | peak expiratory from test session
 test_peak_insp | false	| integer | peak inspiratory from test session
 graph_static_values | false	| string | graph  values
 test_id | false	| integer | id of test session from which training is created
+program | false | string  | program that user is currently using for training
+level | false | string | level  that user is currently using
 
 
 ##Performances model
@@ -752,6 +798,15 @@ avg_monthly | false	| string | Average performance values separated by months
 avg_yearly | false	| string | Average performance values separated by years
 created_at| true	| datetime | creation date
 updated_at | true	| datetime | update date
+
+##Preferred training model
+
+Variable | Required | Type | Description
+--------- | ------- | ----------- | -----------
+user_id | true	| integer | users id
+program | false	| string | program that user is currently using for training
+daily_session | false | string  | daily session for user
+level | false | string | level that user is currently using
 
 ##Devices model(not used)
 
