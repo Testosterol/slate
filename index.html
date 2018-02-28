@@ -286,6 +286,17 @@
               </ul>
           </li>
           <li>
+            <a href="#preferred-training" class="toc-h1 toc-link" data-title="Preferred Training">Preferred Training</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-preferred-training" class="toc-h2 toc-link" data-title="Get preferred training">Get preferred training</a>
+                  </li>
+                  <li>
+                    <a href="#patch-preferred-training" class="toc-h2 toc-link" data-title="Patch preferred training">Patch preferred training</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#all-variables-in-each-model" class="toc-h1 toc-link" data-title="All Variables in each model">All Variables in each model</a>
               <ul class="toc-list-h2">
                   <li>
@@ -299,6 +310,9 @@
                   </li>
                   <li>
                     <a href="#performances-model" class="toc-h2 toc-link" data-title="Performances model">Performances model</a>
+                  </li>
+                  <li>
+                    <a href="#preferred-training-model" class="toc-h2 toc-link" data-title="Preferred training model">Preferred training model</a>
                   </li>
                   <li>
                     <a href="#devices-model-not-used" class="toc-h2 toc-link" data-title="Devices model(not used)">Devices model(not used)</a>
@@ -925,6 +939,9 @@ Posting a new Training session will will generate a training with our super secr
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"program"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hard"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"test_id"</span><span class="p">:</span><span class="s2">"7"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"length"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"evaluation_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="s2">"performed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
@@ -935,6 +952,9 @@ Posting a new Training session will will generate a training with our super secr
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"program"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hard"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"test_id"</span><span class="p">:</span><span class="s2">"7"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"length"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"evaluation_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="s2">"performed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
@@ -982,6 +1002,9 @@ Posting a new Training session will will generate a training with our super secr
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"program"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hard"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"test_id"</span><span class="p">:</span><span class="s2">"7"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"exp_hole_setting"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
     </span><span class="s2">"insp_hole_setting"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
     </span><span class="s2">"graph_func"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -989,6 +1012,9 @@ Posting a new Training session will will generate a training with our super secr
         </span><span class="mf">-0.4</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"length"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"program"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hard"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"test_id"</span><span class="p">:</span><span class="s2">"7"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"evaluation_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"performed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"cal_lung_capacity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
@@ -1049,8 +1075,29 @@ after_update for calculating Performances.</p>
 <p>The API will respond with the id of performance, their starting date, average evaluation, number of entries and the number of which month/week/year it is in. If it is first Week or second or third etc.</p>
 
 <p>All the following calculations must be done in the front end of the application.</p>
-<h3 id='http-request-13'>HTTP Request</h3>
-<p><code>Get https://207.154.254.66/users/:user_id/performances</code></p>
+<h1 id='preferred-training'>Preferred Training</h1>
+<p>Each user has one assigned row in the table preferred training which symbolizes its preferred training.</p>
+
+<p>Performances are collected automatically in the API and are stored in the form of hash values.</p>
+<h2 id='get-preferred-training'>Get preferred training</h2>
+<blockquote>
+<p>The api will respond with:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">"program"</span><span class="p">:</span><span class="s2">"mahaganska kruva"</span><span class="p">,</span><span class="s2">"level"</span><span class="p">:</span><span class="s2">"mahaganska kruva"</span><span class="p">,</span><span class="s2">"daily_session"</span><span class="p">:</span><span class="s2">"mahaganska kruva"</span><span class="p">,</span><span class="s2">"user_id"</span><span class="p">:</span><span class="mi">66</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='patch-preferred-training'>Patch preferred training</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"preferred_training"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"program"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hard"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hard"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"daily_session"</span><span class="p">:</span><span class="w"> </span><span class="s2">"random"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-13'>HTTP Request</h3>
+<p><code>Get https://207.154.254.66/users/:user_id/preferred_training</code>
+<code>Patch https://207.154.254.66/users/:user_id/preferred_training/:id</code></p>
+<h3 id='super-user-6'>Super user</h3>
+<p>Same as with other models</p>
+
+<p><code>GET https://207.154.254.66/users/:adminId/preferred_training/:idOfUserFromWhomYouWantThePreferredTraining</code></p>
 <h1 id='all-variables-in-each-model'>All Variables in each model</h1>
 <p>This section contains basically all the values which you can use/see/get from specific models in database.</p>
 <h2 id='user-model'>User model</h2>
@@ -1304,6 +1351,18 @@ after_update for calculating Performances.</p>
 <td>integer</td>
 <td>id of test session from which training is created</td>
 </tr>
+<tr>
+<td>program</td>
+<td>false</td>
+<td>string</td>
+<td>program that user is currently using for training</td>
+</tr>
+<tr>
+<td>level</td>
+<td>false</td>
+<td>string</td>
+<td>level  that user is currently using</td>
+</tr>
 </tbody></table>
 <h2 id='performances-model'>Performances model</h2>
 <table><thead>
@@ -1349,6 +1408,40 @@ after_update for calculating Performances.</p>
 <td>true</td>
 <td>datetime</td>
 <td>update date</td>
+</tr>
+</tbody></table>
+<h2 id='preferred-training-model'>Preferred training model</h2>
+<table><thead>
+<tr>
+<th>Variable</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>true</td>
+<td>integer</td>
+<td>users id</td>
+</tr>
+<tr>
+<td>program</td>
+<td>false</td>
+<td>string</td>
+<td>program that user is currently using for training</td>
+</tr>
+<tr>
+<td>daily_session</td>
+<td>false</td>
+<td>string</td>
+<td>daily session for user</td>
+</tr>
+<tr>
+<td>level</td>
+<td>false</td>
+<td>string</td>
+<td>level that user is currently using</td>
 </tr>
 </tbody></table>
 <h2 id='devices-model-not-used'>Devices model(not used)</h2>
