@@ -711,7 +711,7 @@ In order to retrieve preferred training, you can use GET endpoint below
 
 Same as with other models
 
-`GET https://207.154.254.66/users/:adminId/preferred_training/:idOfUserFromWhomYouWantThePreferredTraining`
+`GET https://207.154.254.66/users/:adminId/preferred_training/:idOfDesiredUser`
 
 
 The api will respond with id, program, level, daily session
@@ -845,6 +845,20 @@ In order to access the database, to see the tables and variables, you must have 
 or
 
 `https://api.aerofit.dk/admin/login`
+
+# Testing
+
+All of the backend testing before releasing code to the live server is done in Postman.  In order to test changes correctly
+
+Write "rails s" to start the server and test your changes in postman.  
+
+When you log in as user, you will receive 4  headers / tokens, access-token, uid, client, expiry, token-type. Copy these and past them into headers in bulk edit.
+
+After this, you will be able to test anything.
+
+[Receiving tokens](https://drive.google.com/open?id=15-SkFhIus0Nkb2Pe7nIw_tMkuZ4VVyA6)
+
+[Passing tokens into headers](https://drive.google.com/open?id=1hqRzFDMrjiEuZn66PbZgi-hL0dfA1_W_)
 
 # How to report a bug/problem
 
