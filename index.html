@@ -326,7 +326,7 @@
             <a href="#active-admin-database-overview" class="toc-h1 toc-link" data-title="Active Admin / Database Overview">Active Admin / Database Overview</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#http-request-14" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                    <a href="#http-request-15" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
                   </li>
               </ul>
           </li>
@@ -1077,27 +1077,31 @@ after_update for calculating Performances.</p>
 <p>All the following calculations must be done in the front end of the application.</p>
 <h1 id='preferred-training'>Preferred Training</h1>
 <p>Each user has one assigned row in the table preferred training which symbolizes its preferred training.</p>
+<h2 id='get-preferred-training'>Get preferred training</h2><h3 id='http-request-13'>HTTP Request</h3>
+<p><code>Get https://207.154.254.66/users/:user_id/preferred_training</code></p>
+<h3 id='super-user-6'>Super user</h3>
+<p>Same as with other models</p>
 
-<p>Performances are collected automatically in the API and are stored in the form of hash values.</p>
-<h2 id='get-preferred-training'>Get preferred training</h2>
+<p><code>GET https://207.154.254.66/users/:adminId/preferred_training/:idOfUserFromWhomYouWantThePreferredTraining</code></p>
+
+<p>The api will respond with id, program, level, daily session</p>
+
 <blockquote>
-<p>The api will respond with:</p>
+<p>The api will respond with:
+s
+<code>json
+{&quot;id&quot;:1,&quot;program&quot;:&quot;hard&quot;,&quot;level&quot;:&quot;hard&quot;,&quot;daily_session&quot;:&quot;hard&quot;,&quot;user_id&quot;:66}
+</code></p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">"program"</span><span class="p">:</span><span class="s2">"mahaganska kruva"</span><span class="p">,</span><span class="s2">"level"</span><span class="p">:</span><span class="s2">"mahaganska kruva"</span><span class="p">,</span><span class="s2">"daily_session"</span><span class="p">:</span><span class="s2">"mahaganska kruva"</span><span class="p">,</span><span class="s2">"user_id"</span><span class="p">:</span><span class="mi">66</span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='patch-preferred-training'>Patch preferred training</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h2 id='patch-preferred-training'>Patch preferred training</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"preferred_training"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"program"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hard"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hard"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"daily_session"</span><span class="p">:</span><span class="w"> </span><span class="s2">"random"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-13'>HTTP Request</h3>
-<p><code>Get https://207.154.254.66/users/:user_id/preferred_training</code>
-<code>Patch https://207.154.254.66/users/:user_id/preferred_training/:id</code></p>
-<h3 id='super-user-6'>Super user</h3>
-<p>Same as with other models</p>
-
-<p><code>GET https://207.154.254.66/users/:adminId/preferred_training/:idOfUserFromWhomYouWantThePreferredTraining</code></p>
+</span></code></pre><h3 id='http-request-14'>HTTP Request</h3>
+<p><code>Patch https://207.154.254.66/users/:user_id/preferred_training/:id</code></p>
 <h1 id='all-variables-in-each-model'>All Variables in each model</h1>
 <p>This section contains basically all the values which you can use/see/get from specific models in database.</p>
 <h2 id='user-model'>User model</h2>
@@ -1492,7 +1496,7 @@ after_update for calculating Performances.</p>
 <p><a href="https://drive.google.com/open?id=1Uqip1hhOpTRkyJMrOJLEorWx6fT-llEm">Erd diagram</a></p>
 <h1 id='active-admin-database-overview'>Active Admin / Database Overview</h1>
 <p>In order to access the database, to see the tables and variables, you must have admin account created by either system admin(Denis) or other users who have privileges to do so.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>https://207.154.254.66/admin/login</code></p>
 
 <p>or</p>
