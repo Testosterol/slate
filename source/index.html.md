@@ -713,7 +713,7 @@ Same as with other models
 The api will respond with id, program, level, daily session
 
 >The api will respond with:
-
+s
 ```json
 {"id":1,"program":"hard","level":"hard","daily_session":"hard","user_id":66}
 ```
