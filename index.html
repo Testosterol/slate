@@ -1077,7 +1077,11 @@ after_update for calculating Performances.</p>
 <p>All the following calculations must be done in the front end of the application.</p>
 <h1 id='preferred-training'>Preferred Training</h1>
 <p>Each user has one assigned row in the table preferred training which symbolizes its preferred training.</p>
-<h2 id='get-preferred-training'>Get preferred training</h2><h3 id='http-request-13'>HTTP Request</h3>
+
+<p>Preferred training is created and set by default on the user registration, therefore old user registered before this change will not have this option.</p>
+<h2 id='get-preferred-training'>Get preferred training</h2>
+<p>In order to retrieve preferred training, you can use GET endpoint below</p>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>Get https://207.154.254.66/users/:user_id/preferred_training</code></p>
 <h3 id='super-user-6'>Super user</h3>
 <p>Same as with other models</p>
@@ -1087,13 +1091,10 @@ after_update for calculating Performances.</p>
 <p>The api will respond with id, program, level, daily session</p>
 
 <blockquote>
-<p>The api will respond with:
-s
-<code>json
-{&quot;id&quot;:1,&quot;program&quot;:&quot;hard&quot;,&quot;level&quot;:&quot;hard&quot;,&quot;daily_session&quot;:&quot;hard&quot;,&quot;user_id&quot;:66}
-</code></p>
+<p>The api will respond with:</p>
 </blockquote>
-<h2 id='patch-preferred-training'>Patch preferred training</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">"program"</span><span class="p">:</span><span class="s2">"hard"</span><span class="p">,</span><span class="s2">"level"</span><span class="p">:</span><span class="s2">"hard"</span><span class="p">,</span><span class="s2">"daily_session"</span><span class="p">:</span><span class="s2">"hard"</span><span class="p">,</span><span class="s2">"user_id"</span><span class="p">:</span><span class="mi">66</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='patch-preferred-training'>Patch preferred training</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"preferred_training"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"program"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hard"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hard"</span><span class="p">,</span><span class="w">
