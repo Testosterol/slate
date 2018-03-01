@@ -697,8 +697,12 @@ All the following calculations must be done in the front end of the application.
 
 Each user has one assigned row in the table preferred training which symbolizes its preferred training.
 
+Preferred training is created and set by default on the user registration, therefore old user registered before this change will not have this option.
+
 
 ##Get preferred training
+
+In order to retrieve preferred training, you can use GET endpoint below
 
 ###HTTP Request
 `Get https://207.154.254.66/users/:user_id/preferred_training`
@@ -713,7 +717,7 @@ Same as with other models
 The api will respond with id, program, level, daily session
 
 >The api will respond with:
-s
+
 ```json
 {"id":1,"program":"hard","level":"hard","daily_session":"hard","user_id":66}
 ```
