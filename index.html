@@ -331,6 +331,9 @@
               </ul>
           </li>
           <li>
+            <a href="#testing" class="toc-h1 toc-link" data-title="Testing">Testing</a>
+          </li>
+          <li>
             <a href="#how-to-report-a-bug-problem" class="toc-h1 toc-link" data-title="How to report a bug/problem">How to report a bug/problem</a>
           </li>
           <li>
@@ -1086,7 +1089,7 @@ after_update for calculating Performances.</p>
 <h3 id='super-user-6'>Super user</h3>
 <p>Same as with other models</p>
 
-<p><code>GET https://207.154.254.66/users/:adminId/preferred_training/:idOfUserFromWhomYouWantThePreferredTraining</code></p>
+<p><code>GET https://207.154.254.66/users/:adminId/preferred_training/:idOfDesiredUser</code></p>
 
 <p>The api will respond with id, program, level, daily session</p>
 
@@ -1503,6 +1506,18 @@ after_update for calculating Performances.</p>
 <p>or</p>
 
 <p><code>https://api.aerofit.dk/admin/login</code></p>
+<h1 id='testing'>Testing</h1>
+<p>All of the backend testing before releasing code to the live server is done in Postman.  In order to test changes correctly</p>
+
+<p>Write &quot;rails s&quot; to start the server and test your changes in postman.  </p>
+
+<p>When you log in as user, you will receive 4  headers / tokens, access-token, uid, client, expiry, token-type. Copy these and past them into headers in bulk edit.</p>
+
+<p>After this, you will be able to test anything.</p>
+
+<p><a href="https://drive.google.com/open?id=15-SkFhIus0Nkb2Pe7nIw_tMkuZ4VVyA6">Receiving tokens</a></p>
+
+<p><a href="https://drive.google.com/open?id=1hqRzFDMrjiEuZn66PbZgi-hL0dfA1_W_">Passing tokens into headers</a></p>
 <h1 id='how-to-report-a-bug-problem'>How to report a bug/problem</h1>
 <p>If you find a bug regarding backend, communication with database, live server or anything else, first follow these steps:</p>
 
